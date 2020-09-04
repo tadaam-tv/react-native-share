@@ -20,6 +20,8 @@
 @implementation InstagramStories
 RCT_EXPORT_MODULE();
 
+#if !TARGET_OS_TV
+
 - (void)backgroundImage:(NSData *)backgroundImage attributionURL:(NSString *)attributionURL {
     // Verify app can open custom URL scheme, open if able
     
@@ -181,4 +183,6 @@ backgroundBottomColor:(NSString *)backgroundBottomColor
     NSLog(errorMessage);
 }
 // https://instagram.fhrk1-1.fna.fbcdn.net/vp/80c479ffc246a9320e614fa4def6a3dc/5C667D3F/t51.12442-15/e35/50679864_1663709050595244_6964601913751831460_n.jpg?_nc_ht=instagram.fhrk1-1.fna.fbcdn.net
+
+#endif
 @end

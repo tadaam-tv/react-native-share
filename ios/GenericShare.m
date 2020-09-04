@@ -10,6 +10,9 @@
 
 @implementation GenericShare
     RCT_EXPORT_MODULE();
+
+#if !TARGET_OS_TV
+
 - (void)shareSingle:(NSDictionary *)options
     failureCallback:(RCTResponseErrorBlock)failureCallback
     successCallback:(RCTResponseSenderBlock)successCallback
@@ -84,4 +87,5 @@
 
   }
 
+#endif
   @end

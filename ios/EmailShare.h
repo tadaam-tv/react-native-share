@@ -48,8 +48,15 @@
 #else
 #import "React/RCTUtils.h"   // Required when used as a Pod in a Swift project
 #endif
+#if !TARGET_OS_TV
 #import <MessageUI/MessageUI.h>
 @interface EmailShare : NSObject <MFMailComposeViewControllerDelegate>
 
 - (void) shareSingle:(NSDictionary *)options failureCallback:(RCTResponseErrorBlock)failureCallback successCallback:(RCTResponseSenderBlock)successCallback;
 @end
+#else
+@interface EmailShare : NSObject
+
+- (void) shareSingle:(NSDictionary *)options failureCallback:(RCTResponseErrorBlock)failureCallback successCallback:(RCTResponseSenderBlock)successCallback;
+@end
+#endif

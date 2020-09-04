@@ -6,8 +6,9 @@
 //  Copyright © 2016 Facebook. All rights reserved.
 //
 
-
+#if !TARGET_OS_TV
 #import <Social/Social.h>
+#endif
 #import <UIKit/UIKit.h>
 // import RCTConvert
 #if __has_include(<React/RCTConvert.h>)

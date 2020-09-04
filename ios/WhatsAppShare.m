@@ -9,8 +9,11 @@
 #import "WhatsAppShare.h"
 
 @implementation WhatsAppShare
-static UIDocumentInteractionController *documentInteractionController;
 RCT_EXPORT_MODULE();
+
+#if !TARGET_OS_TV
+static UIDocumentInteractionController *documentInteractionController;
+
 - (void)shareSingle:(NSDictionary *)options
     failureCallback:(RCTResponseErrorBlock)failureCallback
     successCallback:(RCTResponseSenderBlock)successCallback {
@@ -60,5 +63,5 @@ RCT_EXPORT_MODULE();
         }
     }
 }
-
+#endif
 @end

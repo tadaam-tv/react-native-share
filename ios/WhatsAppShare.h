@@ -47,7 +47,16 @@
 #else
 #import "React/RCTUtils.h"   // Required when used as a Pod in a Swift project
 #endif
+
+#if !TARGET_OS_TV
 @interface WhatsAppShare : NSObject <RCTBridgeModule,UIDocumentInteractionControllerDelegate>
 
 - (void) shareSingle:(NSDictionary *)options failureCallback:(RCTResponseErrorBlock)failureCallback successCallback:(RCTResponseSenderBlock)successCallback;
 @end
+#else
+@interface WhatsAppShare : NSObject <RCTBridgeModule>
+
+- (void) shareSingle:(NSDictionary *)options failureCallback:(RCTResponseErrorBlock)failureCallback successCallback:(RCTResponseSenderBlock)successCallback;
+@end
+
+#endif

@@ -1,4 +1,7 @@
+#if !TARGET_OS_TV
 #import <MessageUI/MessageUI.h>
+#endif
+
 #import "RNShare.h"
 // import RCTConvert
 #if __has_include(<React/RCTConvert.h>)
@@ -40,6 +43,8 @@
 #else
 #import "React/RCTUIManager.h"   // Required when used as a Pod in a Swift project
 #endif
+
+#if !TARGET_OS_TV
 #import "GenericShare.h"
 #import "WhatsAppShare.h"
 #import "InstagramShare.h"
@@ -48,9 +53,11 @@
 #import "GooglePlusShare.h"
 #import "EmailShare.h"
 #import "RNShareActivityItemSource.h"
+#endif
 
 @implementation RNShare
 
+#if !TARGET_OS_TV
 RCTResponseErrorBlock rejectBlock;
 RCTResponseSenderBlock resolveBlock;
 
@@ -304,5 +311,6 @@ RCT_EXPORT_METHOD(open:(NSDictionary *)options
         resolveBlock(@[@(YES), @"com.apple.DocumentsApp"]);
     }
 }
+#endif
 
 @end

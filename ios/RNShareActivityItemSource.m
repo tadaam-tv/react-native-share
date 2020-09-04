@@ -1,7 +1,9 @@
 #import "RNShareActivityItemSource.h"
 
+#if !TARGET_OS_TV
 #ifdef __IPHONE_13_0
 #import <LinkPresentation/LinkPresentation.h>
+#endif
 #endif
 
 // import RCTBridgeModule
@@ -33,6 +35,7 @@
 #endif
 }
 
+#if !TARGET_OS_TV
 - (instancetype)initWithOptions:(NSDictionary *)options {
     self = [super init];
     if (self) {
@@ -285,6 +288,7 @@
 - (LPLinkMetadata *)activityViewControllerLinkMetadata:(UIActivityViewController *)activityViewController API_AVAILABLE(ios(13.0)) {
     return linkMetadata;
 }
+#endif
 #endif
 
 @end

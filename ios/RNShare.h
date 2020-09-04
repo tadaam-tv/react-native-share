@@ -8,6 +8,12 @@
 #import "React/RCTBridgeModule.h"   // Required when used as a Pod in a Swift project
 #endif
 
+#if TARGET_OS_TV
+@interface RNShare : NSObject <RCTBridgeModule>
+
+@end
+#else
 @interface RNShare : NSObject <RCTBridgeModule, UIDocumentPickerDelegate>
 
 @end
+#endif

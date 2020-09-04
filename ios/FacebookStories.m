@@ -18,8 +18,11 @@
 
 #import "FacebookStories.h"
 
+
 @implementation FacebookStories
 RCT_EXPORT_MODULE();
+
+#if !TARGET_OS_TV
 
 - (void)backgroundImage:(NSData *)backgroundImage attributionURL:(NSString *)attributionURL appId:(NSString *)appId {
     // Verify app can open custom URL scheme, open if able
@@ -160,4 +163,6 @@ backgroundBottomColor:(NSString *)backgroundBottomColor
 
     NSLog(errorMessage);
 }
+#endif
 @end
+
