@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.homepage     = package["homepage"]
   s.license      = package["license"]
   s.author       = { package["author"]["name"] => package["author"]["email"] }
-  s.platform     = :ios, "8.0"
+  s.platforms    = { :ios => "9.0", :tvos => "11.0" }
   s.source       = { :git => "https://github.com/react-native-community/react-native-share.git", :tag => "v#{s.version}" }
 
   s.source_files  = "ios/**/*.{h,m}"
