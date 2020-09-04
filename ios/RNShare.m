@@ -57,7 +57,6 @@
 
 @implementation RNShare
 
-#if !TARGET_OS_TV
 RCTResponseErrorBlock rejectBlock;
 RCTResponseSenderBlock resolveBlock;
 
@@ -116,6 +115,7 @@ RCT_EXPORT_METHOD(shareSingle:(NSDictionary *)options
                   failureCallback:(RCTResponseErrorBlock)failureCallback
                   successCallback:(RCTResponseSenderBlock)successCallback)
 {
+    #if !TARGET_OS_TV
     NSString *social = [RCTConvert NSString:options[@"social"]];
     if (social) {
         NSLog(@"%@", social);
@@ -166,12 +166,14 @@ RCT_EXPORT_METHOD(shareSingle:(NSDictionary *)options
         RCTLogError(@"key 'social' missing in options");
         return;
     }
+    #endif
 }
 
 RCT_EXPORT_METHOD(open:(NSDictionary *)options
                   failureCallback:(RCTResponseErrorBlock)failureCallback
                   successCallback:(RCTResponseSenderBlock)successCallback)
 {
+    #if !TARGET_OS_TV
     if (RCTRunningInAppExtension()) {
         RCTLogError(@"Unable to show action sheet from app extension");
         return;
@@ -276,6 +278,7 @@ RCT_EXPORT_METHOD(open:(NSDictionary *)options
     [controller presentViewController:shareController animated:YES completion:nil];
 
     shareController.view.tintColor = [RCTConvert UIColor:options[@"tintColor"]];
+    #endif
 }
 
 - (NSURL*)getPathFromBase64:(NSString*)base64String with:(NSData*)data {
@@ -299,6 +302,7 @@ RCT_EXPORT_METHOD(open:(NSDictionary *)options
     return NULL;
 }
 
+#if !TARGET_OS_TV
 - (void)documentPickerWasCancelled:(UIDocumentPickerViewController *)controller {
     if (rejectBlock) {
         NSError *error = [NSError errorWithDomain:@"CANCELLED" code: 500 userInfo:@{NSLocalizedDescriptionKey:@"PICKER_WAS_CANCELLED"}];
